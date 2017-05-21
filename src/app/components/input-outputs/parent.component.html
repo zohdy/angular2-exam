@@ -1,0 +1,18 @@
+<div class="jumbotron">
+<h3> Parent Component </h3>
+<hr />
+
+    
+    <p>Data sent to <u>Child Component</u> :
+
+        <!-- #parentInput bliver brugt i Input som property binding til parentData -->
+        <input type="text" #parentInput (keyup)="0"> 
+        Data from <u>Child Component</u> is : <mark> {{childData}} </mark></p>
+</div>
+
+                         <!-- INPUT                                     OUTPUT
+         property binding af parentData som er              childChanged() er et custom event som er 
+         defineret i child.ts filen. Bliver bundet          en instans af eventEmitteren. 
+         til #parentInput referencen                        '$event' er en variabel tilknyttet angular, som bruges til 
+                                                            at gemme den data der er sendt igennem eventet  -->
+<app-child-selector [parentData]="parentInput.value" (childChanged)="childData=$event"> </app-child-selector>

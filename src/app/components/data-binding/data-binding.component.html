@@ -1,0 +1,55 @@
+    <!-- STRING INTERPOLATION -->   
+    <div class="jumbotron">
+    <h3> String Interpolation </h3>
+    <br />
+        <!-- Dobbelt Tuborg paranteser bruges til Interpolation -->
+        <p>This is an example of <u>String interpolation</u> : <mark> {{ title }} </mark></p> 
+    </div>
+
+    <!-- PROPERTY BINDING --> 
+    <div class="jumbotron">  
+    <h3> Property Binding </h3>
+    <br />
+        <!-- Firkantede parenter omkring en property som referer til en expression -->
+        <p>Picture below is bound to a dynamic image link </p> <img [src]="imageLink">
+        <hr /> 
+        <p> Button 'disabled' tag is bound to a boolean value </p>
+        <!-- [disabled] egenskaben er bundet til en boolean variabel defineret i component.ts filen -->
+        <p><button type="button" class="btn-default" [disabled]="isDisabled"> You can't click me </button></p>
+    </div>
+    
+    <!-- STYLE BINDING --> 
+    <div class="jumbotron">
+    <h3> Style Binding </h3>
+    <br />
+        <!-- .makeRed er en klasse defineret i CSS filen. En boolean værdi defineret i .ts filen,
+        bestemmer om CSS klassen er aktiv eller inaktiv -->
+        <p [class.makeRed]="applyRedColor"> Red or Not ?</p>
+        <button type="button" class="btn-default" (click)="toggleRedColor()"> Toggle Style </button>
+    </div>
+
+     <!-- EVENT BINDING & REFERENCES -->   
+    <div class="jumbotron">
+    <h3> Event Binding & References </h3>
+    <br />       
+        <!-- #textFieldInput er referencen der bliver brugt til at gemme brugerens input --> 
+        <input type ="text" #textFieldInput>
+        <!-- onClick() funktionen bliver kaldt fra .ts filen. Parameteret tager #textfieldInput ind -->
+        <button type="button" class="btn-default" (click)="onClick(textFieldInput.value)"> Click Me </button>
+    </div>
+    
+    <!-- TWO WAY DATA BINDING -->   
+    <div class="jumbotron">
+    <h3> Two Way Data Binding </h3>
+    <br />
+        <label> Input : </label>
+        <!-- 2-way data binding vha. af [(ngModel)]. Dataen fra "inputField" kan nu gå begge veje -->
+        <input type="text" class="form-control" [(ngModel)]="inputField">
+        <br />
+
+        <label> Output : </label>
+        <!-- "inputField" bliver vist i viewet vha. string interpolation -->
+        <input type ="text" disabled class="form-control" value="{{inputField}}">
+    </div>
+        <!-- use [()] to represent 2-way-binding.
+        ngModel has to be assigned to a variable defined in the .ts file -->

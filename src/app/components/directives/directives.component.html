@@ -1,0 +1,53 @@
+  <h3> Structural Directives</h3>
+  
+  <!-- ngIF -->
+  <div class="jumbotron">
+    <p> The <b>ngIf</b> Directive </p>
+    <br>
+    <!-- ngIf directive er bundet til boolean variablen 'showElement' defineret i  .ts filen -->
+    <p *ngIf="showElement"> I am a random HTML Element </p>
+     <button class="btn btn-default" (click)="toggleNgIf()">Toggle ngIf</button>
+  </div>
+  
+
+    <!-- ngFOR -->
+  <div class="jumbotron">
+  <p> The <b>ngFor</b> Directive </p>
+  <br>
+    <!-- Knappen toggler boolean variablen "showList" som er bundet til ngIf" -->
+    <button class="btn btn-default" (click)="showListElements()"> Display List </button>
+    <ul class="list-group">
+      <!-- for at kunne tilføje 2 directives (ngIf og ngFor) til 1 element skal ngIf wrappes i et div tag -->
+      <div *ngIf="showList">
+        <li class="list-group-item" *ngFor="let element of myList"> {{ element }}</li>
+      </div>
+    </ul>
+  </div>
+
+
+  <br />
+  <h3> Attribute Directives</h3>
+
+
+
+  <!-- ngCLASS -->
+  <div class="jumbotron">
+  <p> The <b>ngClass</b> Directive</p>
+  <br />
+  <!-- 'someRandomCSS'' referer til den styling der er på den pågældende klasse i CSS dokumentet. 
+  'isStyled'' er en boolean der kontroller om stylingen skal vises eller skjules -->
+  <p [ngClass]="{ someRandomCSS : isStyled }"> This is a paragraph with an ngClass attribute</p>
+  <!-- simpel knap der toggler boolean variablen 'isStyled' true / false -->
+  <button class="btn btn-default" (click)="toggleNgClass()">Toggle</button>
+  </div>
+  
+    <!-- ngSTYLE-->
+  <div class="jumbotron">
+  <p> The <b> ngStyle </b> Directive </p>
+  <br />
+  <!-- 'fontStyle' og 'fontSize' er variabler defineret i .ts dokumentet.
+       'font-style' og 'font-size' er CSS tags som er afhængig af værdien i 'fontSize' og 'fontStyle' -->
+  <p [ngStyle]="{'font-style' : fontStyle, 'font-size': fontSize}"> This is ngStyle in use</p>
+  <!-- simpel knap som håndterer styling fra / til -->
+  <button class="btn btn-default" (click)="toggleNgStyle()"> Toggle </button>
+  </div>

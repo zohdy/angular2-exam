@@ -1,0 +1,14 @@
+<div class="jumbotron">
+<h3> Child Component </h3>
+<hr >
+
+        <p> Data sent to <u>Parent Component :</u>
+        
+        <!-- OUTPUT -->
+        <!-- Hver gang en ændring i input feltet foretages bliver 'onChange' kaldt med userInput som parameter -->
+        <input type="text" #userInput (keyup)="onChange(userInput.value)"> 
+
+        <!-- INPUT -->
+        <!-- 'parentData' er defineret i .ts filen under @Input - vises vha. string interpolation -->
+        Data from <u>Parent Component</u> is : <mark> {{ parentData }} </mark> </p> 
+</div>

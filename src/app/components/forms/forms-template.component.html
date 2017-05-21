@@ -1,0 +1,64 @@
+<div class="jumbotron">
+    <h2> Template Driven Form </h2>
+    <br>
+
+    <!-- THE FORM -- angular opretter en instans af ngForm. #userForm bliver brugt som reference for hele formen -->
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)"> 
+        
+        <!-- NAME -->
+        <div class="form-group">
+            <label> Name </label>
+            <!-- #nameRef bliver brugt til at referere til de forskellige CSS klasser tilknyttet input feltet -->
+            <input type="text" #nameRef required class="form-control" name="name" ngModel>
+            <p>Classes used for styling the form :</p><mark>{{nameRef.className}}</mark>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+            <label> Email </label>
+            <!-- ved at binde "myEmail" til [ngModel] som en property bliver det lagt ind som default i input feltet -->
+            <input type="text" required class="form-control" name="email" ngModel [ngModel]="myEmail"> 
+        </div>
+        
+        <!-- ADDRESS  GROUP -->
+         <!-- ved at bruge 'ngModelGroup' oprettes et nyt opbjekt med input felterne inde i denne gruppe -->        
+        <div ngModelGroup="address">
+            
+                 <!-- STREET -->
+                <div class="form-group">
+                    <label> Street </label>
+                    <!-- #streetRef bruges til at lave styling på CSS klasserne forbundet med ngForm -->
+                    <input type="text" #streetRef="ngModel" required class="form-control" name="street" ngModel>
+                    <!-- ved brug af [hidden] er stylingen først synlig når streetRef.valid og streetRef.pristine er invalid -->
+                    <div [hidden]="streetRef.valid || streetRef.pristine" class="alert alert-danger">
+                            Please enter a Street name ... 
+                    </div>
+                </div>
+                
+                 <!-- CITY -->
+                <div class="form-group">
+                    <label> City </label>
+                    <!-- minlength er en native metode som er bundet til required -->
+                    <input type="text" required minlength="4" class="form-control" placeholder="Must be 4 characters long..." name="city" ngModel>
+                </div>
+                
+                 <!-- POSTAL CODE -->
+                <div class="form-group">
+                    <label> Postal Code </label>
+                    <input type="text" class="form-control" name="postalCode" ngModel > 
+                </div>
+        </div>
+        
+        <!-- BUTTON -->
+        <!-- Knappen er disabled så længe at #userform er invalid, dvs. alle input felter skal overholde required egenskaben -->
+        <button [disabled]="userForm.form.invalid" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<br>
+
+<div class="jumbotron">
+
+    <app-forms-model> </app-forms-model>
+
+</div> 
+

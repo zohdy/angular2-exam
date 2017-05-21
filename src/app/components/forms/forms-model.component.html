@@ -1,0 +1,63 @@
+    <h2> Model Driven Form </h2> 
+    <br />
+
+    <!-- THE FORM -->
+    <!-- userForm er defineret i .ts filen og er en instans af FormGroup -->
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        
+        <!-- NAME -->
+        <!-- form-group er en bootstrap klasse og skal ikke forveksles med angulars "formGroup" -->
+        <div class="form-group">
+            <label> Name </label>
+            <input type="text" class="form-control" formControlName="name">
+            <!-- Hvis dette input 'name' har en fejl i relation til 'required' skal alert-danger vises -->
+            <div *ngIf="userForm.controls['name'].hasError('required')" class="alert alert-danger">
+                Please enter an email address  
+            </div> 
+        </div>
+         
+          <!-- EMAIL -->
+         <div class="form-group">
+            <label> Email </label>
+            <input type="text" class="form-control" formControlName="email">
+        </div>
+        
+        <!-- ADDRESS GROUP -->
+        <!-- Placerer alle adresse inputs i en 'formGroup', som er et objekt i sig selv -->
+        <div formGroupName="address"> 
+
+                    <!-- STREET -->
+                    <div class="form-group">
+                    <label> Street </label>
+                    <input type="text" class="form-control" formControlName="street">
+                            <!-- 'address' har sin egen controls funktion og ligeledes med 'street'. -->
+                            <!-- minLength og maxLength er defineret i validatoren for 'street' i .ts dokumentet -->
+                            <div *ngIf="userForm.controls['address'].controls['street'].hasError('minlength')" class="alert alert-danger">
+                                Too Short
+                            </div> 
+                            <div *ngIf="userForm.controls['address'].controls['street'].hasError('maxlength')" class="alert alert-danger">
+                                Too Long
+                            </div> 
+                    </div>
+                
+                    <!-- CITY -->
+                    <div class="form-group">
+                        <label> City </label>
+                        <input type="text" class="form-control" formControlName="city">
+                    </div>
+                
+                    <!-- POSTAL CODE -->
+                    <div class="form-group">
+                    <label> PostalCode </label>
+                         <input type="text" class="form-control" formControlName="postalCode">
+                            <!-- 'street' controls skal matche det pattern der er defineret i dens validator i .ts filen - ellers vises klasses 'alert-danger' -->
+                            <div *ngIf="userForm.controls['address'].controls['postalCode'].hasError('pattern')" class="alert alert-danger">
+                                PostalCode format is 5 digits, the first digit cannot be 0.
+                            </div> 
+                    </div>
+        </div>
+        
+        <!-- BUTTON -->
+        <!-- knappen er disabled så længe validators ikke er opfyldt -->
+        <button type="submit" [disabled]=userForm.invalid class="btn btn-primary">Submit </button>
+    </form>

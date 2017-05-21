@@ -1,0 +1,131 @@
+
+
+<!-- STRING TRANSFORMATION WITH PIPES -->
+<div class="jumbotron">
+  <h3>Pipes with a <u>String</u> type </h3>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>String</th>
+        <th>Pipetype</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- 'name' variablen = Peter Zohdy'. Defineret i .ts filen -->
+        <td> {{ name }} </td>
+        <td> uppercase </td>
+        <!-- tager 'Peter Zohdy' ind og piper den til Uppercase -->
+        <td> {{ name | uppercase }} </td>
+      </tr>
+      <tr>
+        <!-- 'name' variablen = Peter Zohdy'. Defineret i .ts filen -->
+        <td> {{ name }} </td>
+        <td> lowercase </td>
+        <!-- tager 'Peter Zohdy' ind og piper den til Lowercase -->
+        <td> {{ name | lowercase }} </td>
+      </tr>
+      <tr>
+        <td> {{ name }}</td>
+        <td> slice (1 : 10) </td>
+        <td> {{ name | slice:'1' : '10'}} </td> <!-- deletes first and last index in Peter Zohdy -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- NUMBER TRANSFORMATION WITH PIPES -->
+<div class="jumbotron">
+  <h3>Pipes with a <u>Number</u> type</h3>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Pipetype</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- 'decimalNumber' variablen = 1.548. Defineret i .ts filen -->
+        <td>{{ decimalNumber }} </td>
+        <td>Number of Digits (2.2-2)</td> 
+        <!-- Det første tal er det mindste antal a cifre - altå bliver 1 til 01
+             Derefter er det min og max nummeret af decimaler - altså min 2 og max 2 -->
+        <td>{{ decimalNumber | number:'2.2-2' }}</td> 
+      </tr>
+      <tr>
+        <!-- 'currencyNumber' variablen = 8.99, defineret i .ts filen -->
+        <td>{{ currencyNumber }} </td>
+        <td> EUR </td>
+        <!-- currencyNumber er piped til EUR ved brug af 'EUR:true' -->
+        <td>{{ currencyNumber | currency:'EUR':true }}</td> <!-- 'currency' is the pipe type and boolean type is used for displaying the Euro sign -->
+      </tr>
+      <tr>
+        <!-- 'currencyNumber' variablen = 8.99, defineret i .ts filen -->
+        <td>{{ currencyNumber }} </td>
+        <td> USD </td>
+        <!-- currencyNumber er piped til EUR ved brug af 'USD:true' -->
+        <td>{{ currencyNumber | currency:'USD':true }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- DATE TRANSFORMATION WITH PIPES -->
+<div class="jumbotron">
+  <h3>Pipes with a <u>Date</u> type</h3>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Pipetype</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- 'date' er en instans af Date som returnerer den pågældende dato -->
+        <td>{{ date }} </td>
+        <td>fullDate</td>
+          <!-- piper 'date' til Day, Month, Year e.g. Monday, December 26, 2016 -->
+        <td>{{ date | date:'fullDate' }}</td>
+      </tr>
+      <tr>
+        <td>{{ date }} </td>
+        <td>shortDate</td>
+        <!-- piper 'date' til MM/DD/YYY -->
+        <td>{{ date | date:'shortDate' }}</td>
+      </tr>
+      <tr>
+        <td>{{ date }}</td>
+        <!-- piper 'date' til HH:MM:SS AM/PM -->
+        <td>mediumTime</td>
+        <td>{{ date | date: 'mediumTime'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- CUSTOM FILTER PIPE -->
+<div class="jumbotron">
+<h3>Custom Filter Pipe</h3>
+<hr />
+
+ <!-- 'userInput' bliver sat til en type af ngModel for at kunne tilføje 'filter' -->
+<p><input type="text" class="form-control" placeholder="Filter List" [(ngModel)]="userInput" /></p>
+  <ul class="list-group">
+   
+   <!-- 'userInput' er defineret ovenfor og bliver piped til ngFor løkken som udskriver arrayet fra .ts dokumentet -->
+    <li class="list-group-item" *ngFor="let name of names | filter : userInput">
+      {{name}}
+    </li>
+  </ul>
+</div>
+
+
+

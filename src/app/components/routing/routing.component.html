@@ -1,0 +1,26 @@
+<!-- ROUTE PARAMS -->
+<h2>Route Params </h2>
+<div class="jumbotron">
+  
+  <input type="text" #userInput >
+  <!-- "userInput" er det ID der bliver tilknytet Params i URL'en. -->
+  <button class="btn btn-default" (click)="goToRoute(userInput.value)">Go To Route</button>
+
+</div>
+<hr />
+
+
+<!-- SUBROUTING -->
+<h2> SubRouting </h2>
+<div class="jumbotron">
+  <h3> I am the <u>Main Route</u></h3>
+  <hr />
+
+    <button class="btn btn-default" routerLink="subroute"> A Subroute </button>
+    <button class="btn btn-default" routerLink="another-subroute"> Another SubRoute </button>
+
+</div>
+
+<!-- en router-outlet skal også gives til subroutes -->
+<!-- her bliver indholdet for 'subroute' og 'another-subroute' vist -->
+<router-outlet></router-outlet>
